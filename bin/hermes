@@ -1,6 +1,6 @@
 
-import { program } from 'commander';
-import('../src/index.js');
+import { Command } from 'commander';
+const program = new Command();
 
 program
   .name('hermes')
@@ -11,8 +11,8 @@ program
   .command('start')
   .alias('s')
   .description('Iniciar Hermes')
-  .action(() => {
-    require('../src/index.js');
+  .action(async () => {
+    await import('../src/index.js');
   });
 
 program
@@ -20,7 +20,7 @@ program
   .alias('c')
   .description('Configurar Hermes')
   .action(async () => {
-    const { showSettings } = require('../src/config/settings');
+    const { showSettings } = await import('../src/config/settings.js');
     await showSettings();
   });
 
@@ -29,13 +29,13 @@ program
   .alias('p')
   .description('Ver projetos recentes')
   .action(async () => {
-    const { showRecentProjects } = require('../src/utils/helpers');
+    const { showRecentProjects } = await import('../src/utils/helpers.js');
     await showRecentProjects();
   });
 
 // Se nenhum comando for fornecido, iniciar normalmente
 if (process.argv.length === 2) {
-  require('../src/index.js');
+  await import('../src/index.js');
 } else {
   program.parse();
 }

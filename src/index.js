@@ -1,14 +1,14 @@
-import chalk from 'chalk';
-import figlet from 'figlet';
-import gradient from 'gradient-string';
-import inquirer from 'inquirer';
-import { showMenu } from './ui/menu.js';
-import { checkConfig, createConfig } from './config/settings.js';
+const chalk = require('chalk');
+const figlet = require('figlet');
+const gradient = require('gradient-string');
+const inquirer = require('inquirer');
+const { showMenu } = require('./ui/menu');
+const { checkConfig, createConfig } = require('./config/settings');
 
 async function init() {
     console.clear();
     
-    // Mostrar logo Hermes sem efeito de digitação
+    // Mostrar logo Hermes
     await showHermesLogo();
     
     // Verificar configurações
@@ -25,13 +25,12 @@ async function init() {
 }
 
 async function showHermesLogo() {
-    // Logo simples e direto
-    console.log(chalk.cyan.bold('\n  ██╗  ██╗███████╗██████╗ ███╗   ███╗███████╗███████╗'));
-    console.log(chalk.cyan.bold('  ██║  ██║██╔════╝██╔══██╗████╗ ████║██╔════╝██╔════╝'));
-    console.log(chalk.cyan.bold('  ███████║█████╗  ██████╔╝██╔████╔██║█████╗  ███████╗'));
-    console.log(chalk.cyan.bold('  ██╔══██║██╔══╝  ██╔══██╗██║╚██╔╝██║██╔══╝  ╚════██║'));
-    console.log(chalk.cyan.bold('  ██║  ██║███████╗██║  ██║██║ ╚═╝ ██║███████╗███████║'));
-    console.log(chalk.cyan.bold('  ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝╚══════╝'));
+    console.log(chalk.bold.cyan('\n  ██╗  ██╗███████╗██████╗ ███╗   ███╗███████╗███████╗'));
+    console.log(chalk.bold.cyan('  ██║  ██║██╔════╝██╔══██╗████╗ ████║██╔════╝██╔════╝'));
+    console.log(chalk.bold.cyan('  ███████║█████╗  ██████╔╝██╔████╔██║█████╗  ███████╗'));
+    console.log(chalk.bold.cyan('  ██╔══██║██╔══╝  ██╔══██╗██║╚██╔╝██║██╔══╝  ╚════██║'));
+    console.log(chalk.bold.cyan('  ██║  ██║███████╗██║  ██║██║ ╚═╝ ██║███████╗███████║'));
+    console.log(chalk.bold.cyan('  ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝╚══════╝'));
     
     console.log(chalk.cyan('\n🚀 CLI de Desenvolvimento com IA\n'));
     console.log(chalk.gray('Transformando ideias em código funcional...\n'));

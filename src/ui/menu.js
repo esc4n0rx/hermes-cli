@@ -1,10 +1,10 @@
-import inquirer from 'inquirer';
-import chalk from 'chalk';
-import { startDevelopment } from '../agents/ideaAgent.js';
-import { showRecentProjects } from '../utils/helpers.js';
-import { showSettings } from '../config/settings.js';
+const inquirer = require('inquirer');
+const chalk = require('chalk');
+const { startDevelopment } = require('../agents/ideaAgent');
+const { showRecentProjects } = require('../utils/helpers');
+const { showSettings } = require('../config/settings');
 
-export async function showMenu() {
+async function showMenu() {
     const choices = [
         {
             name: chalk.green('🔨 1. Desenvolvimento'),
@@ -75,3 +75,5 @@ function showAbout() {
     console.log(chalk.white('CLI de desenvolvimento com IA que transforma ideias em projetos funcionais'));
     console.log(chalk.white('Desenvolvido com Node.js e integração com Arcee Conductor\n'));
 }
+
+module.exports = { showMenu };

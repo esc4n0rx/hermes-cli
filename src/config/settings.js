@@ -6,15 +6,15 @@ import chalk from 'chalk';
 
 const CONFIG_PATH = path.join(os.homedir(), '.hermes-config.json');
 
-export async function checkConfig() {
+async function checkConfig() {
     return await fs.pathExists(CONFIG_PATH);
 }
 
-export async function createConfig(config) {
+async function createConfig(config) {
     await fs.writeJson(CONFIG_PATH, config, { spaces: 2 });
 }
 
-export async function getConfig() {
+async function getConfig() {
     if (await checkConfig()) {
         return await fs.readJson(CONFIG_PATH);
     }
