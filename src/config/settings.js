@@ -1,8 +1,8 @@
-import fs from 'fs-extra';
-import path from 'path';
-import os from 'os';
-import inquirer from 'inquirer';
-import chalk from 'chalk';
+const fs = require('fs-extra');
+const path = require('path');
+const os = require('os');
+const inquirer = require('inquirer');
+const chalk = require('chalk');
 
 const CONFIG_PATH = path.join(os.homedir(), '.hermes-config.json');
 
@@ -21,13 +21,13 @@ async function getConfig() {
     return null;
 }
 
-export async function showSettings() {
+async function showSettings() {
     const config = await getConfig();
     
     console.log(chalk.cyan('\n⚙️  Configurações Atuais'));
-    console.log(chalk.white(`Token API: ${config.arceeToken ? '***configurado***' : 'não configurado'}`));
-    console.log(chalk.white(`Modelo: ${config.defaultModel}`));
-    console.log(chalk.white(`Caminho de Projetos: ${config.projectsPath}\n`));
+    console.log(chalk.white(`Token API: ${config?.arceeToken ? '***configurado***' : 'não configurado'}`));
+    console.log(chalk.white(`Modelo: ${config?.defaultModel || 'não configurado'}`));
+    console.log(chalk.white(`Caminho de Projetos: ${config?.projectsPath || 'não configurado'}\n`));
     
     const { action } = await inquirer.prompt([
         {
@@ -87,3 +87,5 @@ async function editConfig(field, config) {
     await createConfig(config);
     console.log(chalk.green('✅ Configuração atualizada!\n'));
 }
+
+module.exports = { checkConfig, createConfig, getConfig, showSettings };
