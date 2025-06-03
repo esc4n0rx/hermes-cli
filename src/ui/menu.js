@@ -3,6 +3,7 @@ const chalk = require('chalk');
 const { startDevelopment } = require('../agents/ideaAgent');
 const { showRecentProjects } = require('../utils/helpers');
 const { showSettings } = require('../config/settings');
+const { testApiConnection } = require('../utils/testApi');
 
 async function showMenu() {
     const choices = [
@@ -23,11 +24,15 @@ async function showMenu() {
             value: 'settings'
         },
         {
-            name: chalk.cyan('ℹ️  5. Sobre'),
+            name: chalk.hex('#FFA500')('🧪 5. Testar API'), // Usando hex para laranja
+            value: 'test'
+        },
+        {
+            name: chalk.cyan('ℹ️  6. Sobre'),
             value: 'about'
         },
         {
-            name: chalk.red('🚪 6. Sair'),
+            name: chalk.red('🚪 7. Sair'),
             value: 'exit'
         }
     ];
@@ -38,7 +43,7 @@ async function showMenu() {
             name: 'action',
             message: chalk.bold('Selecione uma opção:'),
             choices,
-            pageSize: 6
+            pageSize: 7
         }
     ]);
 
@@ -56,6 +61,10 @@ async function showMenu() {
             break;
         case 'settings':
             await showSettings();
+            await showMenu();
+            break;
+        case 'test':
+            await testApiConnection();
             await showMenu();
             break;
         case 'about':
