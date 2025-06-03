@@ -1059,3 +1059,439 @@
   }
 }
 --------------------------------------------------------------------------------
+{
+  "timestamp": "2025-06-03T01:44:28.088Z",
+  "level": "info",
+  "message": "Enviando conversa",
+  "data": {
+    "conversationLength": 11,
+    "model": null
+  }
+}
+--------------------------------------------------------------------------------
+{
+  "timestamp": "2025-06-03T01:44:28.090Z",
+  "level": "info",
+  "message": "Iniciando requisição para API Arcee",
+  "data": null
+}
+--------------------------------------------------------------------------------
+{
+  "timestamp": "2025-06-03T01:44:28.091Z",
+  "level": "info",
+  "message": "Configuração carregada",
+  "data": {
+    "hasToken": true,
+    "tokenLength": 91,
+    "tokenPrefix": "M9jxYf0O...",
+    "defaultModel": "auto",
+    "baseURL": "https://conductor.arcee.ai/v1"
+  }
+}
+--------------------------------------------------------------------------------
+{
+  "timestamp": "2025-06-03T01:44:28.092Z",
+  "level": "info",
+  "message": "Dados da requisição preparados",
+  "data": {
+    "model": "auto",
+    "messagesCount": 11,
+    "firstMessageRole": "system",
+    "firstMessageLength": 690
+  }
+}
+--------------------------------------------------------------------------------
+{
+  "timestamp": "2025-06-03T01:44:28.093Z",
+  "level": "info",
+  "message": "Enviando requisição HTTP",
+  "data": {
+    "url": "https://conductor.arcee.ai/v1/chat/completions",
+    "method": "POST",
+    "headers": {
+      "Authorization": "Bearer M9jxYf0O...",
+      "Content-Type": "application/json"
+    },
+    "timeout": 30000
+  }
+}
+--------------------------------------------------------------------------------
+{
+  "timestamp": "2025-06-03T01:44:39.230Z",
+  "level": "success",
+  "message": "Resposta recebida com sucesso",
+  "data": {
+    "status": 200,
+    "statusText": "OK",
+    "duration": "11137ms",
+    "responseData": {
+      "hasChoices": true,
+      "choicesLength": 1,
+      "firstChoiceRole": "assistant",
+      "contentLength": 1865
+    },
+    "headers": {
+      "date": "Tue, 03 Jun 2025 01:44:39 GMT",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "connection": "keep-alive",
+      "access-control-allow-headers": "Content-Type, Authorization, traceparent, baggage",
+      "access-control-allow-methods": "POST, GET, OPTIONS",
+      "access-control-allow-origin": "*",
+      "access-control-max-age": "86400",
+      "cross-origin-opener-policy": "same-origin",
+      "cross-origin-resource-policy": "same-origin",
+      "origin-agent-cluster": "?1",
+      "x-chat-id": "8837232e-c9d9-4c53-b5b5-f4cff4c5a2af",
+      "x-dns-prefetch-control": "off",
+      "x-download-options": "noopen",
+      "x-model": "gpt-4.1",
+      "x-permitted-cross-domain-policies": "none",
+      "x-router-complexity": "8",
+      "x-router-domain": "Computers_and_Electronics",
+      "x-router-task-type": "Code Generation",
+      "set-cookie": "mh_session=IjI5MGNjYjZmNDNkZmFiYzAzMzFjNDBlMGJjOWI1ZmZjIg%3D%3D.lPbJRe8d1kr7dJdwzAYgmgcAcgUEHwxJP5gQgEkRwog; Path=/; HttpOnly; Secure; SameSite=Lax, _cfuvid=7fckYYqQsuJsnk6npnORACG0JxrTVktAH6wsRUbAK8U-1748915079205-0.0.1.1-604800000; path=/; domain=.arcee.ai; HttpOnly; Secure; SameSite=None",
+      "cf-cache-status": "DYNAMIC",
+      "expect-ct": "max-age=86400, enforce",
+      "referrer-policy": "same-origin",
+      "x-content-type-options": "nosniff",
+      "x-frame-options": "SAMEORIGIN",
+      "x-xss-protection": "1; mode=block",
+      "server": "cloudflare",
+      "cf-ray": "949b8167dfb6e2b5-GIG",
+      "alt-svc": "h3=\":443\"; ma=86400"
+    }
+  }
+}
+--------------------------------------------------------------------------------
+{
+  "timestamp": "2025-06-03T01:44:49.960Z",
+  "level": "info",
+  "message": "Enviando mensagem simples",
+  "data": {
+    "role": "user",
+    "contentLength": 2872,
+    "model": null
+  }
+}
+--------------------------------------------------------------------------------
+{
+  "timestamp": "2025-06-03T01:44:49.961Z",
+  "level": "info",
+  "message": "Iniciando requisição para API Arcee",
+  "data": null
+}
+--------------------------------------------------------------------------------
+{
+  "timestamp": "2025-06-03T01:44:49.962Z",
+  "level": "info",
+  "message": "Configuração carregada",
+  "data": {
+    "hasToken": true,
+    "tokenLength": 91,
+    "tokenPrefix": "M9jxYf0O...",
+    "defaultModel": "auto",
+    "baseURL": "https://conductor.arcee.ai/v1"
+  }
+}
+--------------------------------------------------------------------------------
+{
+  "timestamp": "2025-06-03T01:44:49.962Z",
+  "level": "info",
+  "message": "Dados da requisição preparados",
+  "data": {
+    "model": "auto",
+    "messagesCount": 1,
+    "firstMessageRole": "user",
+    "firstMessageLength": 2872
+  }
+}
+--------------------------------------------------------------------------------
+{
+  "timestamp": "2025-06-03T01:44:49.963Z",
+  "level": "info",
+  "message": "Enviando requisição HTTP",
+  "data": {
+    "url": "https://conductor.arcee.ai/v1/chat/completions",
+    "method": "POST",
+    "headers": {
+      "Authorization": "Bearer M9jxYf0O...",
+      "Content-Type": "application/json"
+    },
+    "timeout": 30000
+  }
+}
+--------------------------------------------------------------------------------
+{
+  "timestamp": "2025-06-03T01:45:05.702Z",
+  "level": "success",
+  "message": "Resposta recebida com sucesso",
+  "data": {
+    "status": 200,
+    "statusText": "OK",
+    "duration": "15738ms",
+    "responseData": {
+      "hasChoices": true,
+      "choicesLength": 1,
+      "firstChoiceRole": "assistant",
+      "contentLength": 3047
+    },
+    "headers": {
+      "date": "Tue, 03 Jun 2025 01:45:05 GMT",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "connection": "keep-alive",
+      "access-control-allow-headers": "Content-Type, Authorization, traceparent, baggage",
+      "access-control-allow-methods": "POST, GET, OPTIONS",
+      "access-control-allow-origin": "*",
+      "access-control-max-age": "86400",
+      "cross-origin-opener-policy": "same-origin",
+      "cross-origin-resource-policy": "same-origin",
+      "origin-agent-cluster": "?1",
+      "x-chat-id": "6bb272f2-478c-4287-8673-86d06572d8c1",
+      "x-dns-prefetch-control": "off",
+      "x-download-options": "noopen",
+      "x-model": "claude-3-7-sonnet-latest",
+      "x-permitted-cross-domain-policies": "none",
+      "x-router-complexity": "4",
+      "x-router-domain": "Computers_and_Electronics",
+      "x-router-task-type": "Code Generation",
+      "set-cookie": "mh_session=IjMzMTBjYWMzMTMwOTI4NGEwNjQ0MWNkNGUwMzhhMzZkIg%3D%3D.9njqIUCf33KKwMJKvBuYbDzK2LfxSn16m1yM2gC4jsY; Path=/; HttpOnly; Secure; SameSite=Lax, _cfuvid=BJrO3KJ24ffVRW7DJxWtO8U36nIkNP2dbiFtPEhzSNw-1748915105676-0.0.1.1-604800000; path=/; domain=.arcee.ai; HttpOnly; Secure; SameSite=None",
+      "cf-cache-status": "DYNAMIC",
+      "expect-ct": "max-age=86400, enforce",
+      "referrer-policy": "same-origin",
+      "x-content-type-options": "nosniff",
+      "x-frame-options": "SAMEORIGIN",
+      "x-xss-protection": "1; mode=block",
+      "server": "cloudflare",
+      "cf-ray": "949b81f0a836e2b5-GIG",
+      "alt-svc": "h3=\":443\"; ma=86400"
+    }
+  }
+}
+--------------------------------------------------------------------------------
+{
+  "timestamp": "2025-06-03T01:45:27.979Z",
+  "level": "info",
+  "message": "Enviando mensagem simples",
+  "data": {
+    "role": "user",
+    "contentLength": 4134,
+    "model": null
+  }
+}
+--------------------------------------------------------------------------------
+{
+  "timestamp": "2025-06-03T01:45:27.980Z",
+  "level": "info",
+  "message": "Iniciando requisição para API Arcee",
+  "data": null
+}
+--------------------------------------------------------------------------------
+{
+  "timestamp": "2025-06-03T01:45:27.982Z",
+  "level": "info",
+  "message": "Configuração carregada",
+  "data": {
+    "hasToken": true,
+    "tokenLength": 91,
+    "tokenPrefix": "M9jxYf0O...",
+    "defaultModel": "auto",
+    "baseURL": "https://conductor.arcee.ai/v1"
+  }
+}
+--------------------------------------------------------------------------------
+{
+  "timestamp": "2025-06-03T01:45:27.982Z",
+  "level": "info",
+  "message": "Dados da requisição preparados",
+  "data": {
+    "model": "auto",
+    "messagesCount": 1,
+    "firstMessageRole": "user",
+    "firstMessageLength": 4134
+  }
+}
+--------------------------------------------------------------------------------
+{
+  "timestamp": "2025-06-03T01:45:27.983Z",
+  "level": "info",
+  "message": "Enviando requisição HTTP",
+  "data": {
+    "url": "https://conductor.arcee.ai/v1/chat/completions",
+    "method": "POST",
+    "headers": {
+      "Authorization": "Bearer M9jxYf0O...",
+      "Content-Type": "application/json"
+    },
+    "timeout": 30000
+  }
+}
+--------------------------------------------------------------------------------
+{
+  "timestamp": "2025-06-03T01:45:35.500Z",
+  "level": "success",
+  "message": "Resposta recebida com sucesso",
+  "data": {
+    "status": 200,
+    "statusText": "OK",
+    "duration": "7517ms",
+    "responseData": {
+      "hasChoices": true,
+      "choicesLength": 1,
+      "firstChoiceRole": "assistant",
+      "contentLength": 3142
+    },
+    "headers": {
+      "date": "Tue, 03 Jun 2025 01:45:35 GMT",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "connection": "keep-alive",
+      "access-control-allow-headers": "Content-Type, Authorization, traceparent, baggage",
+      "access-control-allow-methods": "POST, GET, OPTIONS",
+      "access-control-allow-origin": "*",
+      "access-control-max-age": "86400",
+      "cross-origin-opener-policy": "same-origin",
+      "cross-origin-resource-policy": "same-origin",
+      "origin-agent-cluster": "?1",
+      "x-chat-id": "c9c6b924-ce53-4864-aafa-6e33b363f14d",
+      "x-dns-prefetch-control": "off",
+      "x-download-options": "noopen",
+      "x-model": "gpt-4.1",
+      "x-permitted-cross-domain-policies": "none",
+      "x-router-complexity": "8",
+      "x-router-domain": "Computers_and_Electronics",
+      "x-router-task-type": "Code Generation",
+      "set-cookie": "mh_session=Ijg4M2IxNjk1OGQ0OWQ4YTYyZmJmNzU0Yzc2MzM5N2Y2Ig%3D%3D.e0VR3UL5dtxpGkIlDW5yEsFlrpEfkroDOLnX%2B7LdTFE; Path=/; HttpOnly; Secure; SameSite=Lax, _cfuvid=BrkExCAPkPHPIGDuTTS_KSbPyt1U26AtAvkntwsqeds-1748915135474-0.0.1.1-604800000; path=/; domain=.arcee.ai; HttpOnly; Secure; SameSite=None",
+      "cf-cache-status": "DYNAMIC",
+      "expect-ct": "max-age=86400, enforce",
+      "referrer-policy": "same-origin",
+      "x-content-type-options": "nosniff",
+      "x-frame-options": "SAMEORIGIN",
+      "x-xss-protection": "1; mode=block",
+      "server": "cloudflare",
+      "cf-ray": "949b82deac3ce2b5-GIG",
+      "alt-svc": "h3=\":443\"; ma=86400"
+    }
+  }
+}
+--------------------------------------------------------------------------------
+{
+  "timestamp": "2025-06-03T01:49:15.394Z",
+  "level": "info",
+  "message": "Testando conexão com API",
+  "data": null
+}
+--------------------------------------------------------------------------------
+{
+  "timestamp": "2025-06-03T01:49:15.394Z",
+  "level": "info",
+  "message": "Enviando mensagem simples",
+  "data": {
+    "role": "user",
+    "contentLength": 30,
+    "model": null
+  }
+}
+--------------------------------------------------------------------------------
+{
+  "timestamp": "2025-06-03T01:49:15.395Z",
+  "level": "info",
+  "message": "Iniciando requisição para API Arcee",
+  "data": null
+}
+--------------------------------------------------------------------------------
+{
+  "timestamp": "2025-06-03T01:49:15.395Z",
+  "level": "info",
+  "message": "Configuração carregada",
+  "data": {
+    "hasToken": true,
+    "tokenLength": 91,
+    "tokenPrefix": "M9jxYf0O...",
+    "defaultModel": "gpt-4.1",
+    "baseURL": "https://conductor.arcee.ai/v1"
+  }
+}
+--------------------------------------------------------------------------------
+{
+  "timestamp": "2025-06-03T01:49:15.396Z",
+  "level": "info",
+  "message": "Dados da requisição preparados",
+  "data": {
+    "model": "gpt-4.1",
+    "messagesCount": 1,
+    "firstMessageRole": "user",
+    "firstMessageLength": 30
+  }
+}
+--------------------------------------------------------------------------------
+{
+  "timestamp": "2025-06-03T01:49:15.396Z",
+  "level": "info",
+  "message": "Enviando requisição HTTP",
+  "data": {
+    "url": "https://conductor.arcee.ai/v1/chat/completions",
+    "method": "POST",
+    "headers": {
+      "Authorization": "Bearer M9jxYf0O...",
+      "Content-Type": "application/json"
+    },
+    "timeout": 30000
+  }
+}
+--------------------------------------------------------------------------------
+{
+  "timestamp": "2025-06-03T01:49:15.928Z",
+  "level": "error",
+  "message": "Erro na requisição API",
+  "data": {
+    "duration": "532ms",
+    "errorType": "AxiosError",
+    "message": "Request failed with status code 402",
+    "status": 402,
+    "statusText": "Payment Required",
+    "responseData": "Only Arcee AI models are supported for your plan. Please set up billing at https://conductor.arcee.ai/billing to continue.",
+    "requestData": {
+      "url": "https://conductor.arcee.ai/v1/chat/completions",
+      "model": "gpt-4.1",
+      "messagesCount": 1
+    },
+    "headers": {
+      "date": "Tue, 03 Jun 2025 01:49:15 GMT",
+      "content-type": "text/plain;charset=UTF-8",
+      "content-length": "122",
+      "connection": "keep-alive",
+      "cross-origin-opener-policy": "same-origin",
+      "cross-origin-resource-policy": "same-origin",
+      "origin-agent-cluster": "?1",
+      "x-dns-prefetch-control": "off",
+      "x-download-options": "noopen",
+      "x-permitted-cross-domain-policies": "none",
+      "set-cookie": "mh_session=Ijg5ZGE5YTg2MTQ4ZDg5YWY3MTQ5YjFjYzA5Yzk3YzkwIg%3D%3D.Uw8Sn%2BrpdbckNV9PiWXMU7%2FycMx%2FvOwHWZlrFR%2FpNmY; Path=/; HttpOnly; Secure; SameSite=Lax, _cfuvid=BZsOiL4yfYxED8HkVRwGM2xPg.f2U00Tp7GTggBtrmc-1748915355899-0.0.1.1-604800000; path=/; domain=.arcee.ai; HttpOnly; Secure; SameSite=None",
+      "cf-cache-status": "DYNAMIC",
+      "expect-ct": "max-age=86400, enforce",
+      "referrer-policy": "same-origin",
+      "x-content-type-options": "nosniff",
+      "x-frame-options": "SAMEORIGIN",
+      "x-xss-protection": "1; mode=block",
+      "server": "cloudflare",
+      "cf-ray": "949b886b6892e2b5-GIG",
+      "alt-svc": "h3=\":443\"; ma=86400"
+    },
+    "config": {
+      "timeout": 30000,
+      "hasAuth": true
+    }
+  }
+}
+--------------------------------------------------------------------------------
+{
+  "timestamp": "2025-06-03T01:49:15.929Z",
+  "level": "error",
+  "message": "Teste de conexão falhou",
+  "data": {
+    "error": "Request failed with status code 402"
+  }
+}
+--------------------------------------------------------------------------------

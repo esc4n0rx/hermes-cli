@@ -15,7 +15,9 @@ Você deve:
 5. Definir estrutura de pastas
 6. Especificar dependências
 
-Retorne sua análise no seguinte formato JSON:
+IMPORTANTE: Retorne APENAS um JSON válido, sem markdown, texto adicional ou explicações.
+
+Formato JSON obrigatório:
 {
   "arquitetura": "tipo de arquitetura (SPA, API REST, Full-stack, etc)",
   "tecnologias": {
@@ -27,7 +29,7 @@ Retorne sua análise no seguinte formato JSON:
   "modulos": [
     {
       "nome": "Nome do Módulo",
-      "descricao": "Descrição",
+      "descricao": "Descrição concisa",
       "tipo": "frontend/backend/shared",
       "prioridade": "alta/media/baixa"
     }
@@ -39,7 +41,7 @@ Retorne sua análise no seguinte formato JSON:
   "dependencias": ["dep1", "dep2"]
 }
 
-Seja preciso e técnico, mas mantenha praticidade.
+Seja preciso, técnico e retorne apenas o JSON.
 `;
 
 class RefinerAgent {
@@ -54,23 +56,163 @@ class RefinerAgent {
         try {
             await showProgress('Refinando e estruturando o projeto...', 2000);
             
-            const prompt = `${REFINER_AGENT_PROMPT}\n\nEscopo do projeto:\n${projectScope}`;
+            const prompt = `${REFINER_AGENT_PROMPT}
+
+Escopo do projeto:
+${projectScope}`;
             
             const response = await this.client.sendMessage(prompt);
             
-            // Tentar parsear JSON
+            // Limpar resposta de markdown e extrair JSON
+            const cleanedResponse = this.extractJSON(response);
+            
             try {
-                this.refinedProject = JSON.parse(response);
+                this.refinedProject = JSON.parse(cleanedResponse);
+                // Validar estrutura básica
+                if (!this.validateProjectStructure(this.refinedProject)) {
+                    throw new Error('Estrutura JSON inválida');
+                }
                 await this.showRefinedProject();
             } catch (jsonError) {
-                console.log(chalk.yellow('⚠️  Resposta não estava em JSON, processando como texto...\n'));
-                console.log(chalk.white(response));
-                await this.handleNonJsonResponse(response);
+                console.log(chalk.yellow('⚠️  Erro no parsing JSON, tentando novamente...\n'));
+                await this.retryWithBetterPrompt(response, projectScope);
             }
             
         } catch (error) {
             console.error(chalk.red('❌ Erro no Agente Refinador:'), error.message);
+            console.log(chalk.yellow('🔄 Usando estrutura de fallback...\n'));
+            await this.useFallbackStructure(projectScope);
         }
+    }
+
+    extractJSON(response) {
+        // Remover blocos de código markdown
+        let cleaned = response.replace(/```json\s*/g, '').replace(/```\s*/g, '');
+        
+        // Remover texto antes e depois do JSON
+        const firstBrace = cleaned.indexOf('{');
+        const lastBrace = cleaned.lastIndexOf('}');
+        
+        if (firstBrace !== -1 && lastBrace !== -1 && lastBrace > firstBrace) {
+            cleaned = cleaned.substring(firstBrace, lastBrace + 1);
+        }
+        
+        // Limpar caracteres problemáticos
+        cleaned = cleaned.replace(/[\u0000-\u001F\u007F-\u009F]/g, '');
+        
+        return cleaned.trim();
+    }
+
+    validateProjectStructure(project) {
+        return project && 
+               project.arquitetura && 
+               project.tecnologias && 
+               project.modulos && 
+               Array.isArray(project.modulos) &&
+               project.modulos.length > 0;
+    }
+
+    async retryWithBetterPrompt(previousResponse, projectScope) {
+        const retryPrompt = `RETORNE APENAS JSON VÁLIDO. Nenhum texto adicional.
+
+Baseado no projeto: ${projectScope}
+
+Crie um JSON com esta estrutura exata:
+{
+  "arquitetura": "string",
+  "tecnologias": {
+    "frontend": ["array"],
+    "backend": ["array"], 
+    "database": "string",
+    "outros": ["array"]
+  },
+  "modulos": [
+    {
+      "nome": "string",
+      "descricao": "string",
+      "tipo": "frontend/backend/shared",
+      "prioridade": "alta/media/baixa"
+    }
+  ],
+  "estrutura": {
+    "pastas": ["array"],
+    "arquivos_principais": ["array"]
+  },
+  "dependencias": ["array"]
+}`;
+
+        try {
+            await showProgress('Reprocessando resposta...', 1000);
+            const retryResponse = await this.client.sendMessage(retryPrompt);
+            const cleanedRetry = this.extractJSON(retryResponse);
+            
+            this.refinedProject = JSON.parse(cleanedRetry);
+            
+            if (!this.validateProjectStructure(this.refinedProject)) {
+                throw new Error('Estrutura ainda inválida');
+            }
+            
+            await this.showRefinedProject();
+        } catch (error) {
+            console.log(chalk.red('❌ Erro persistente no JSON. Usando fallback...'));
+            await this.useFallbackStructure(projectScope);
+        }
+    }
+
+    async useFallbackStructure(projectScope) {
+        // Analisar o escopo para determinar tecnologias mais apropriadas
+        const scopeLower = projectScope.toLowerCase();
+        
+        // Detectar tipo de aplicação
+        const isWeb = scopeLower.includes('web') || scopeLower.includes('site') || scopeLower.includes('página');
+        const isMobile = scopeLower.includes('mobile') || scopeLower.includes('app');
+        const isAPI = scopeLower.includes('api') || scopeLower.includes('backend') || scopeLower.includes('servidor');
+        
+        // Detectar tecnologias mencionadas
+        const hasReact = scopeLower.includes('react');
+        const hasVue = scopeLower.includes('vue');
+        const hasNext = scopeLower.includes('next');
+        const hasNode = scopeLower.includes('node');
+        const hasExpress = scopeLower.includes('express');
+        
+        // Estrutura de fallback baseada no escopo
+        this.refinedProject = {
+            arquitetura: isAPI ? "API REST" : isMobile ? "Aplicação Mobile" : "Single Page Application (SPA)",
+            tecnologias: {
+                frontend: hasReact || hasNext ? ["React"] : hasVue ? ["Vue.js"] : isWeb ? ["React"] : [],
+                backend: hasNode || hasExpress ? ["Node.js", "Express"] : isAPI || isWeb ? ["Node.js", "Express"] : [],
+                database: scopeLower.includes('postgres') ? "PostgreSQL" : scopeLower.includes('mysql') ? "MySQL" : "MongoDB",
+                outros: ["Jest", "ESLint"]
+            },
+            modulos: [
+                {
+                    nome: "Interface Principal",
+                    descricao: "Componente principal da aplicação",
+                    tipo: "frontend",
+                    prioridade: "alta"
+                },
+                {
+                    nome: "API Backend", 
+                    descricao: "Serviços e rotas da aplicação",
+                    tipo: "backend",
+                    prioridade: "alta"
+                },
+                {
+                    nome: "Configuração e Setup",
+                    descricao: "Arquivos de configuração e inicialização",
+                    tipo: "shared",
+                    prioridade: "alta"
+                }
+            ],
+            estrutura: {
+                pastas: ["src", "public", "api", "components", "utils"],
+                arquivos_principais: ["index.js", "App.js", "server.js", "package.json"]
+            },
+            dependencias: hasReact ? ["react", "react-dom"] : hasVue ? ["vue"] : ["react", "react-dom"]
+        };
+
+        console.log(chalk.green('✅ Estrutura padrão criada baseada no escopo. Prosseguindo...\n'));
+        await this.showRefinedProject();
     }
 
     async showRefinedProject() {
@@ -102,7 +244,7 @@ class RefinerAgent {
             {
                 type: 'confirm',
                 name: 'proceed',
-                message: 'Prosseguir para a geração de código?',
+                message: 'Prosseguir para a arquitetura e geração de código?',
                 default: true
             }
         ]);
@@ -110,8 +252,26 @@ class RefinerAgent {
         if (proceed) {
             await startArchitecture(this.refinedProject);
         } else {
-            const { showMenu } = require('../ui/menu');
-            await showMenu();
+            const { action } = await inquirer.prompt([
+                {
+                    type: 'list',
+                    name: 'action',
+                    message: 'O que deseja fazer?',
+                    choices: [
+                        { name: '🔄 Tentar refinamento novamente', value: 'retry' },
+                        { name: '🏠 Voltar ao menu', value: 'menu' }
+                    ]
+                }
+            ]);
+
+            if (action === 'retry') {
+                // Reiniciar processo
+                const { startRefinement } = require('./refinerAgent');
+                await startRefinement(this.projectScope, []);
+            } else {
+                const { showMenu } = require('../ui/menu');
+                await showMenu();
+            }
         }
     }
 
@@ -128,18 +288,10 @@ class RefinerAgent {
         ]);
 
         if (proceed) {
-            const retryPrompt = `${REFINER_AGENT_PROMPT}\n\nATENÇÃO: Retorne APENAS o JSON válido, sem texto adicional.\n\nResposta anterior:\n${response}`;
-            
-            try {
-                await showProgress('Reprocessando...', 1500);
-                const retryResponse = await this.client.sendMessage(retryPrompt);
-                this.refinedProject = JSON.parse(retryResponse);
-                await this.showRefinedProject();
-            } catch (error) {
-                console.log(chalk.red('❌ Erro persistente. Voltando ao menu...'));
-                const { showMenu } = require('../ui/menu');
-                await showMenu();
-            }
+            await this.retryWithBetterPrompt(response);
+        } else {
+            const { showMenu } = require('../ui/menu');
+            await showMenu();
         }
     }
 }
