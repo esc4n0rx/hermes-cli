@@ -1,0 +1,41 @@
+
+import { program } from 'commander';
+import('../src/index.js');
+
+program
+  .name('hermes')
+  .description('CLI de desenvolvimento com IA')
+  .version('1.0.0');
+
+program
+  .command('start')
+  .alias('s')
+  .description('Iniciar Hermes')
+  .action(() => {
+    require('../src/index.js');
+  });
+
+program
+  .command('config')
+  .alias('c')
+  .description('Configurar Hermes')
+  .action(async () => {
+    const { showSettings } = require('../src/config/settings');
+    await showSettings();
+  });
+
+program
+  .command('projects')
+  .alias('p')
+  .description('Ver projetos recentes')
+  .action(async () => {
+    const { showRecentProjects } = require('../src/utils/helpers');
+    await showRecentProjects();
+  });
+
+// Se nenhum comando for fornecido, iniciar normalmente
+if (process.argv.length === 2) {
+  require('../src/index.js');
+} else {
+  program.parse();
+}

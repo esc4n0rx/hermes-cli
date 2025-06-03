@@ -1,0 +1,37 @@
+{
+  "name": "hermes-cli",
+  "version": "1.0.0",
+  "description": "CLI de desenvolvimento com IA altamente customizada",
+  "main": "src/index.js",
+  "type": "module",
+  "bin": {
+    "hermes": "./bin/hermes"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
+  },
+  "dependencies": {
+    "inquirer": "^9.2.12",
+    "chalk": "^5.3.0",
+    "figlet": "^1.7.0",
+    "ora": "^7.0.1",
+    "axios": "^1.6.0",
+    "fs-extra": "^11.2.0",
+    "commander": "^11.0.0",
+    "gradient-string": "^2.0.2",
+    "cli-progress": "^3.12.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.0"
+  },
+  "keywords": [
+    "cli",
+    "ai",
+    "development",
+    "hermes"
+  ],
+  "author": "Seu Nome",
+  "license": "MIT",
+  "packageManager": "pnpm@10.11.0+sha512.6540583f41cc5f628eb3d9773ecee802f4f9ef9923cc45b69890fb47991d4b092964694ec3a4f738a420c918a333062c8b925d312f42e4f0c263eb603551f977"
+}
